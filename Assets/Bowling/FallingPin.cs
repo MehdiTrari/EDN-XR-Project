@@ -21,9 +21,9 @@ public class FallingPin : MonoBehaviour
         gameObject.SetActive(!isFallen);
         if (!isFallen)
         {
-            float angle = Vector3.Angle(transform.up, Vector3.up);
+            float angleDiff = Quaternion.Angle(transform.rotation, Quaternion.Euler(-90, 0, 0));
 
-            if (angle < fallAngleThreshold)
+            if (angleDiff > fallAngleThreshold)
             {
                 isFallen = true;
                 Debug.Log(gameObject.name + " est tombee !");
