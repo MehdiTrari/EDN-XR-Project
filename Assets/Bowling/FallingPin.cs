@@ -7,7 +7,7 @@ public class FallingPin : MonoBehaviour
 
     float fallAngleThreshold = 45f;
 
-    bool isFallen = false;
+    public bool isFallen = false;
 
     // Start is called before the first frame update
     void Start()
