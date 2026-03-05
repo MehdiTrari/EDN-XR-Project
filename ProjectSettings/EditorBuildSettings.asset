@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VR Scene.unity
     guid: 93a590788af8e464bb8ed7e65b78c43f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bowling VR.unity
     guid: 4a24c8a4ff5b2514d9950612bed31e1a
   - enabled: 0
     path: Assets/Samples/XR Interaction Toolkit/2.6.4/Starter Assets/DemoScene.unity
     guid: 319dafa5c80f29f428dc1e0d03f04177
+  - enabled: 1
+    path: Assets/Scenes/SaveurSavante VR.unity
+    guid: 8e657dd8a8331f448b823e563cdd9392
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: ce18139cfa441194ebbca9060709159d,
       type: 2}
