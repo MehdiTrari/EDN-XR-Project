@@ -31,3 +31,47 @@ on a un autre livre, de recette ?????? pour aider au mélange
 on doit prendre des feuilles des plantes les mélanger avec des épices ou autre
 ça fait des potions
 Pour donner au roi pcq il est nul à la bagarre et que il veut impressionner la reine et que elle, elle veut elle veut que avec les hommes musclés
+
+## Implémentation gameplay (prototype jouable)
+
+Le projet inclut maintenant une boucle de jeu 3D complète pour **"L'Herboriste du Grand Siècle"** :
+
+1. **Collecte** : le joueur prend les plantes dans la serre et les dépose sur l'étagère de validation.
+2. **Recette** : une fois l'étagère validée, le joueur jette les plantes demandées dans le chaudron.
+3. **Victoire** : quand la recette est complète, un événement de fin est déclenché.
+
+### Scripts ajoutés
+- `PlantItem` : identifie chaque plante avec un `plantId`.
+- `HerbariumGameManager` : gère objectifs, progression et textes UI.
+- `ShelfDepositZone` : trigger de l'étagère.
+- `CauldronRecipeZone` : trigger du chaudron + effet/son.
+
+### Mise en place dans Unity (5 minutes)
+
+1. Ouvrir la scène principale (`Assets/Scenes/SaveurSavante VR.unity`).
+2. Créer un objet vide `GameManager` et ajouter **HerbariumGameManager**.
+3. (Optionnel) Créer un Canvas World Space + 3 textes TextMeshPro :
+   - `QuestText`
+   - `RecipeText`
+   - `FeedbackText`
+   Puis les lier dans l'inspecteur du `GameManager`.
+4. Sur chaque plante interactible :
+   - ajouter un `Collider` (isTrigger = false),
+   - ajouter un `Rigidbody` (si objet manipulable),
+   - ajouter le script **PlantItem**,
+   - renseigner `plantId` (ex. `menthe`, `lavande`, `romarin`).
+5. Sur la zone d'étagère (objet trigger) :
+   - ajouter **ShelfDepositZone**,
+   - assigner `GameManager`.
+6. Sur la zone interne du chaudron (trigger) :
+   - ajouter **CauldronRecipeZone**,
+   - assigner `GameManager`,
+   - (optionnel) assigner `AudioSource` et `SplashEffect`.
+7. Dans `HerbariumGameManager` :
+   - remplir `Requested Plants`,
+   - configurer la `Recipe` (ou laisser vide pour reprendre automatiquement la liste demandée).
+
+### Conseils XR (PICO)
+- Garder des colliders simples (box/capsule) pour la performance.
+- Limiter les particules et les matériaux transparents dans la serre.
+- Utiliser les prefabs de plantes déjà présents pour accélérer le level design.
