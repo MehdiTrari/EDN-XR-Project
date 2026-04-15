@@ -121,3 +121,23 @@ Suite aux retours équipe, le gameplay a été renforcé pour correspondre exact
 
 ### Remarque
 - Le README est mis à jour à chaque itération pour garder une description fidèle de l'état actuel du jeu.
+
+## Résolution de conflits Git (important)
+
+Si Git affiche des conflits dans les scripts (`HerbariumGameManager`, `PlantItem`, etc.), **ne pas valider automatiquement "Both changes" partout**.
+
+### Pourquoi
+- "Both changes" peut dupliquer des champs/méthodes (`requestedPlants`, `Start()`, `GetRecipeCount()`, etc.).
+- En C#, ces doublons créent des erreurs de compilation Unity (symboles redéfinis, blocs incomplets, accolades cassées).
+
+### Règle simple
+- Garder **une seule version cohérente** de chaque bloc de code.
+- Supprimer tous les marqueurs de conflit (`<<<<<<<`, `=======`, `>>>>>>>`).
+- Vérifier qu'il n'y a qu'une seule déclaration par membre (un seul champ, une seule méthode du même nom/signature).
+
+### Check rapide avant commit
+1. Ouvrir la Console Unity : aucune erreur CS0102/CS0111 (membres dupliqués).
+2. Vérifier que ces fichiers compilent sans doublons :
+   - `Assets/SaveurSavante/Script/HerbariumGameManager.cs`
+   - `Assets/SaveurSavante/Script/PlantItem.cs`
+3. Tester en Play Mode : progression étagère -> chaudron toujours fonctionnelle.
